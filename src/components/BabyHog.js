@@ -5,27 +5,39 @@ import SunBaby from '../assets/sun-eyes.png'
 import BlueBaby from '../assets/blue-eyes.png'
 import GlowingBaby from '../assets/glowing-eyes.png'
 
-const imgMapper = {
-  'blue': BlueBaby,
-  'glowing': GlowingBaby,
-  'sun': SunBaby
-}
+
 
 class BabyHog extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-
+      name: props.name,
+      weight: props.weight
     }
   }
 
-  selectImg() {
+  imgMapper = {
+    'blue': BlueBaby,
+    'glowing': GlowingBaby,
+    'sun': SunBaby
+  }
+
+  selectImg = () => {
+    return this.imgMapper[this.props.eyeColor]
 
   }
 
   changeWeight(event) {
     event.preventDefault()
+    if (!isNaN(this.state.weight)){
+      if (event.target.id){
+        this.setState({weight: parseInt(this.state.weight) + 1})
+      } else {
+        this.setState({weight: parseInt(this.state.weight) - 1})
+      }
+    }
+
 
   }
 
@@ -34,7 +46,7 @@ class BabyHog extends Component {
         <li className="hogbabies">
           <h1>{this.state.name}</h1>
           <h3>Weight: {this.state.weight}</h3>
-          <h4>Eye Color: {this.state.eyeColor}</h4>
+          <h4>Eye Color: {this.props.eyeColor}</h4>
           <div className="wrap-crap">
             <Button animated id="increase" onClick={this.changeWeight.bind(this)}>
               <Button.Content id="increase" visible>Increase Weight</Button.Content>
@@ -52,7 +64,7 @@ class BabyHog extends Component {
           </div>
 
 
-          <img src="{/* give correct img source component based on eyecolor prop */}" style={{height: `${this.state.imgHeight}px`}} alt="MasterBlasterJrJr" />
+          <img src={this.selectImg()} style={{height: `${this.state.imgHeight}px`}} alt="MasterBlasterJrJr" />
 
 
         </li>

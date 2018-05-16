@@ -19,8 +19,6 @@ class MasterHog extends Component {
   changeEyeColor(event) {
     event.preventDefault()
     this.setState({eyeColor: event.target.value})
-    const children = this.state.offspring.map((hog)=>({...hog, eyeColor: event.target.eyeColor}))
-    this.setState({offspring: children})
   }
   renderBaby = () => {
     return this.state.offspring.map(hog => <BabyHog name = {hog.name} weight = {hog.weight} eyeColor = {this.state.eyeColor}/>)

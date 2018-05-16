@@ -17,7 +17,8 @@ class BabyHog extends Component {
     this.state = {
       name: props.baby.name,
       eyeColor: props.eyeColor,
-      weight: props.baby.weight
+      weight: props.baby.weight,
+      imgHeight: 200
     }
   }
 
@@ -40,14 +41,16 @@ class BabyHog extends Component {
 
   changeWeight(event) {
     event.preventDefault()
-    debugger
+
     if (event.target.id === 'increase') {
       this.setState({
-        weight: this.state.weight += 1
+        weight: parseInt(this.state.weight) + 1,
+        imgHeight: parseInt(this.state.imgHeight) + 1
       })
     } else {
       this.setState({
-        weight: this.state.weight -= 1
+        weight: parseInt(this.state.weight) - 1,
+        imgHeight: parseInt(this.state.imgHeight) - 1
       })
     }
   }

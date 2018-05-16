@@ -18,14 +18,19 @@ class MasterHog extends Component {
 
   changeEyeColor(event) {
     event.preventDefault()
-
+    this.setState({
+      eyeColor: event.target.value
+    })
   }
 
 
   render() {
+    const offsprings = this.props.offspring.offspring.map((offspring) => {
+      return <BabyHog name={offspring.name} weight={offspring.weight} eyeColor={this.state.eyeColor} />
+    })
+
     return (
       <div>
-
         <form>
           <input
             type="radio"
@@ -56,6 +61,7 @@ class MasterHog extends Component {
         </div>
         <ul className="hoglist">
           {/* render hog babies */}
+          { offsprings }
         </ul>
 
       </div>

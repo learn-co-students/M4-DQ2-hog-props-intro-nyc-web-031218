@@ -13,7 +13,8 @@ class BabyHog extends Component {
     super(props)
     this.state = {
       name: props.name,
-      weight: props.weight
+      weight: props.weight,
+      imgHeight: 200
     }
   }
 
@@ -32,9 +33,11 @@ class BabyHog extends Component {
     event.preventDefault()
     if (!isNaN(this.state.weight)){
       if (event.target.id){
-        this.setState({weight: parseInt(this.state.weight) + 1})
+        this.setState({weight: parseInt(this.state.weight) + 1, imgHeight: parseInt(this.state.imgHeight) + 1})
       } else {
-        this.setState({weight: parseInt(this.state.weight) - 1})
+        if (this.state.weight > 0){
+          this.setState({weight: parseInt(this.state.weight) - 1, imgHeight: parseInt(this.state.imgHeight) - 1})
+        }
       }
     }
 

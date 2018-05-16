@@ -1,4 +1,4 @@
-var offspring = {"offspring": [
+var offspring = {"key": [
   { "id": 1,
     "name": "JeffKatzy Katz",
     "weight": "That's private"

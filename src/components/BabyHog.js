@@ -12,21 +12,44 @@ const imgMapper = {
 }
 
 class BabyHog extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
-
+      name: props.baby.name,
+      eyeColor: props.eyeColor,
+      weight: props.baby.weight
     }
   }
 
   selectImg() {
-
+    switch (this.props.eyeColor) {
+      case 'blue':
+        return BlueBaby
+        break
+      case 'sun':
+        return SunBaby
+        break
+      case 'glowing':
+        return GlowingBaby
+        break
+      default:
+        return Baby
+        break
+    }
   }
 
   changeWeight(event) {
     event.preventDefault()
-
+    debugger
+    if (event.target.id === 'increase') {
+      this.setState({
+        weight: this.state.weight += 1
+      })
+    } else {
+      this.setState({
+        weight: this.state.weight -= 1
+      })
+    }
   }
 
   render() {
@@ -52,7 +75,7 @@ class BabyHog extends Component {
           </div>
 
 
-          <img src="{/* give correct img source component based on eyecolor prop */}" style={{height: `${this.state.imgHeight}px`}} alt="MasterBlasterJrJr" />
+          <img src={this.selectImg()} style={{height: `${this.state.imgHeight}px`}} alt="MasterBlasterJrJr" />
 
 
         </li>
